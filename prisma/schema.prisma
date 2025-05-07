@@ -6,7 +6,8 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../lib/generated/prisma"
+  // 出力先を変更
+  // output   = "../lib/generated/prisma"
 }
 
 datasource db {

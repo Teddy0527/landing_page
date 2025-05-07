@@ -45,6 +45,8 @@ export function ContactSection() {
     setIsSubmitting(true)
 
     try {
+      console.log('送信データ:', formData);
+      
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
@@ -52,8 +54,18 @@ export function ContactSection() {
         },
         body: JSON.stringify(formData),
       });
-
-      const data = await response.json();
+      
+      // レスポンスのデバッグ
+      const responseText = await response.text();
+      console.log('APIレスポンス:', responseText);
+      
+      let data;
+      try {
+        data = JSON.parse(responseText);
+      } catch (parseError) {
+        console.error('JSONパースエラー:', parseError);
+        throw new Error(`レスポンスのパースに失敗しました: ${responseText.substring(0, 100)}...`);
+      }
 
       if (!response.ok) {
         throw new Error(data.error || 'お問い合わせの送信中にエラーが発生しました。');

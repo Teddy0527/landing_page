@@ -11,4 +11,4 @@ CREATE TABLE "Contact" (
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "Contact_pkey" PRIMARY KEY ("id")
-); 
+);
